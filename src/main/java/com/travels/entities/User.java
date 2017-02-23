@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "client")
-public class Client implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,6 +19,8 @@ public class Client implements Serializable {
     private Long id;
     private String name;
     private String email;
+    private String password;
+    private String role;
 
     public String getName() {
         return name;
@@ -42,6 +44,22 @@ public class Client implements Serializable {
 
     public void setId(final Long id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(final String role) {
+        this.role = role;
     }
 
 }

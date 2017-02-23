@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  />
 </head>
 <body>
 <h1>Test</h1>
+<h2 th:utext="${user}"></h2>
+<div sec:authorize="isAuthenticated()">
+  This content is only shown to authenticated users.
+</div>
+<div sec:authorize="hasAuthority('ADMIN')">
+  This content is only shown to administrators.
+</div>
+<div sec:authorize="hasAuthority('USER')">
+  This content is only shown to users.
+</div>
+
+<div sec:authorize="hasAuthority('AGENT')">
+  This content is only shown to AGENTS.
+</div>
+<div>---------------------</div>
+
+Logged user: <span sec:authentication="name">Bob</span>
+Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+<!-- <p th:each="user : ${pageUsers.content}" ><span th:utext="${user.id}"></span> <span th:utext="${user.name}"></span></p>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li th:each="num, iter : ${#numbers.sequence(1, pageUsers.totalPages)}" class="" th:classappend="${currentPage} == ${num} ? 'active'"><a th:href="@{/index(page=${num},searchName=${searchName})}" th:utext="${num-1}">1</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav> -->
+
 </body>
 </html>
